@@ -1,15 +1,12 @@
 package com.cal.calculator;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-
-import java.util.Stack;
-
 import java.io.IOException;
+import java.util.Stack;
 
 public class Calculator extends Application {
 
@@ -106,7 +103,8 @@ public class Calculator extends Application {
             float ans = 0;
             double pi = Math.PI;
 
-            String substringToRadians = String.valueOf(Float.parseFloat(substring) * pi / 180);
+            String substringToDegree = degree ? substring : String.valueOf(Math.toDegrees(Double.parseDouble(substring)) * 180 / pi);
+
             switch (triExpression.substring(firstOpenBracket - 3, firstOpenBracket)) {
                 case "Sin":
                     ans = degree ? (float) Math.sin(evaluate(substring) * pi / 180) : (float) Math.sin(evaluate(substring));
@@ -120,35 +118,16 @@ public class Calculator extends Application {
                     ans = degree ? (float) Math.tan(evaluate(substring) * pi / 180) : (float) Math.tan(evaluate(substring));
                     break;
                 case "-1S":
-                    if (degree) {
-                        // substring to radians
-                        ans = (float) Math.asin(evaluate(substringToRadians) * pi / 180);
-                    }
-                    else{
-                        ans = (float) Math.asin(evaluate(substring));
-                    }
-                    //ans = (float) Math.asin(evaluate(substring)); // output in radians
-
+                    ans = (float) Math.asin(evaluate(substringToDegree)); // output in radians
+                    if (degree) ans = (float) (ans * 180 / pi); // output in degrees
                     break;
                 case "-1C":
-                    if (degree) {
-                        // substring to radians
-                        ans = (float) Math.acos(evaluate(substring));
-                    }
-                    else{
-                        ans = (float) Math.acos(evaluate(substring));
-                    }
-
+                    ans = (float) Math.acos(evaluate(substringToDegree));
+                    if (degree) ans = (float) (ans * 180 / pi);
                     break;
                 case "-1T":
-                    if (degree) {
-                        // substring to radians
-                        ans = (float) Math.atan(evaluate(substring));
-                    }
-                    else{
-                        ans = (float) Math.atan(evaluate(substring));
-                    }
-
+                    ans = (float) Math.atan(evaluate(substringToDegree));
+                    if (degree) ans = (float) (ans * 180 / pi);
                     break;
             }
 

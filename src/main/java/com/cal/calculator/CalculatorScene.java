@@ -226,5 +226,15 @@ public class CalculatorScene {
 
     public void onDRButtonClick(ActionEvent actionEvent) {
         degree = !degree;
+        // if button text is "Degree"
+        if (((Button) actionEvent.getSource()).getText().equals("D")) {
+            // change button text to "Radian"
+            ((Button) actionEvent.getSource()).setText("R");
+        }
+        else {
+            // change button text to "Degree"
+            ((Button) actionEvent.getSource()).setText("D");
+        }
     }
+
 }
