@@ -9,7 +9,7 @@
 
 <AnchorPane prefHeight="452.0" prefWidth="633.0" stylesheets="@styles/root.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cal.calculator.CalculatorScene">
    <children>
-       <Label fx:id="welcomeText" layoutX="65.0" layoutY="103.0" prefHeight="52.0" prefWidth="502.0" stylesheets="@styles/labels.css" text="0" />
+       <Label fx:id="MainExpression" layoutX="65.0" layoutY="103.0" prefHeight="52.0" prefWidth="502.0" stylesheets="@styles/labels.css" text="0" />
 
       <Label fx:id="Trigonometric" layoutX="65.0" layoutY="173.0" minHeight="29.0" prefHeight="30.0" prefWidth="501.0" style="-fx-font-size: 15; -fx-text-fill: black; -fx-background-color: white;" text="0" textOverrun="CLIP">
          <font>

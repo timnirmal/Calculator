@@ -137,13 +137,9 @@ public class Calculator extends Application {
             // Remove sin , cos, tan, -1S, -1C, -1T from the string
             triExpression = triExpression.substring(0, firstOpenBracket - 3) + ans;
 
-
             //return String.valueOf(ans);
             return triExpression;
         }
-
-
-
 
         return String.valueOf(evaluate(triExpression));
     }

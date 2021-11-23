@@ -14,7 +14,7 @@ public class CalculatorScene {
     private boolean degree = true;
 
     @FXML
-    public Label welcomeText;
+    public Label MainExpression;
 
     @FXML
     public Label Trigonometric;
@@ -35,7 +35,7 @@ public class CalculatorScene {
             expression += text;
         }
 
-        welcomeText.setText(expression);
+        MainExpression.setText(expression);
     }
 
     // Numbers and Operators
@@ -60,7 +60,7 @@ public class CalculatorScene {
     public void onCloseBracketButtonClick(ActionEvent actionEvent) {
         if (head) {
             String text = ((Button) actionEvent.getSource()).getText();
-            welcomeText.setText(expression);
+            MainExpression.setText(expression);
 
             // if expression contains "|"
             WriteLeft(text);
@@ -85,7 +85,7 @@ public class CalculatorScene {
 
             if (triExpression.contains("Sin") || triExpression.contains("Cos") || triExpression.contains("Tan") || triExpression.contains("-1S") || triExpression.contains("-1C") || triExpression.contains("-1T")) {
                 Trigonometric.setText(solvedShow);
-                welcomeText.setText(solvedShow);
+                MainExpression.setText(solvedShow);
                 head = false;
             }
             else {
@@ -93,7 +93,7 @@ public class CalculatorScene {
                 triExpression = "";
                 triExShow = "";
                 expression += solved;
-                welcomeText.setText(expression);
+                MainExpression.setText(expression);
                 Trigonometric.setText("");
                 head = true;
             }
@@ -106,14 +106,14 @@ public class CalculatorScene {
         if (expression.contains("|")) expression = expression.replace("|", "");
 
         String answer = String.valueOf(Calculator.evaluate(expression));
-        welcomeText.setText(answer);
+        MainExpression.setText(answer);
         expression = answer;
     }
 
     // Clear the expression
     public void onClearButtonClick(ActionEvent actionEvent) {
         expression = "";
-        welcomeText.setText("");
+        MainExpression.setText("");
         triExpression = "";
         triExShow = "";
         Trigonometric.setText("");
@@ -124,7 +124,7 @@ public class CalculatorScene {
         // Clear last character
         if (expression.length() > 0) {
             expression = expression.substring(0, expression.length() - 1);
-            welcomeText.setText(expression);
+            MainExpression.setText(expression);
         }
     }
 
@@ -177,7 +177,7 @@ public class CalculatorScene {
             if (!expression.contains("|")) {
                 // Add "|" to before last character of expression
                 expression = expression.substring(0, expression.length() - 1) + "|" + expression.substring(expression.length()-1);
-                welcomeText.setText(expression);
+                MainExpression.setText(expression);
             }
             else {
                 // get the index of "|"
@@ -189,10 +189,10 @@ public class CalculatorScene {
                 if (index != 1) {
                     // move "|" to number before current position
                     expression = expression.substring(0, index - 1) + "|" + expression.substring(index - 1);
-                    welcomeText.setText(expression);
+                    MainExpression.setText(expression);
                 }
                 else {
-                    welcomeText.setText(expression);
+                    MainExpression.setText(expression);
                 }
             }
     }
@@ -203,7 +203,7 @@ public class CalculatorScene {
         if (!expression.contains("|")) {
             // Add "|" to before last character of expression
             expression = expression.charAt(0) + "|" + expression.substring(1);
-            welcomeText.setText(expression);
+            MainExpression.setText(expression);
         }
         else {
             // get the index of "|"
@@ -215,10 +215,10 @@ public class CalculatorScene {
             if (index != expression.length() - 1) {
                 // move "|" to number after current position
                 expression = expression.substring(0, index + 1) + "|" + expression.substring(index + 1);
-                welcomeText.setText(expression);
+                MainExpression.setText(expression);
             }
             else {
-                welcomeText.setText(expression);
+                MainExpression.setText(expression);
                 return;
             }
         }
