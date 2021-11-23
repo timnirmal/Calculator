@@ -37,7 +37,7 @@
       <Button layoutX="431.0" layoutY="187.0" onAction="#onTriInvButtonClick" prefHeight="40.0" prefWidth="40.0" text="Cos-1" />
       <Button layoutX="430.0" layoutY="244.0" onAction="#onTriInvButtonClick" prefHeight="40.0" prefWidth="40.0" text="Tan-1" />
 
-      <Button layoutX="430.0" layoutY="302.0" onAction="#onButtonClick" prefHeight="40.0" prefWidth="40.0" text="D/R" />
+      <Button layoutX="430.0" layoutY="302.0" onAction="#onDRButtonClick" prefHeight="40.0" prefWidth="40.0" text="D/R" />
       <Button layoutX="34.0" layoutY="360.0" onAction="#onClearButtonClick" prefHeight="40.0" prefWidth="40.0" text="C" />
       <Button layoutX="369.0" layoutY="360.0" onAction="#onLeftButtonClick" prefHeight="40.0" prefWidth="40.0" text="&lt;-" />
       <Button layoutX="431.0" layoutY="360.0" onAction="#onRightButtonClick" prefHeight="40.0" prefWidth="40.0" text="-&gt;" />

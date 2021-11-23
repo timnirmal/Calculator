@@ -11,6 +11,7 @@ public class CalculatorScene {
     boolean head = true; //True for expression, false for Trigonometric
     private String triExpression = "";
     private String triExShow = "";
+    private boolean degree = true;
 
     @FXML
     public Label welcomeText;
@@ -21,7 +22,6 @@ public class CalculatorScene {
     // Write new Char to the right of cursor
     private void WriteLeft(String text) {
         if (expression.contains("|")) {
-            System.out.println("Contains |");
             // find index of "|"
             int index = expression.indexOf("|");
             // get the expression before "|"
@@ -30,8 +30,6 @@ public class CalculatorScene {
             String right = expression.substring(index + 1);
 
             expression = left + "|" + text + right;
-
-            System.out.println("The expression is " + expression);
         }
         else {
             expression += text;
@@ -66,16 +64,9 @@ public class CalculatorScene {
 
             // if expression contains "|"
             WriteLeft(text);
-
         }
         else {
-            // Print solved, triExpression, and triExShow
-            System.out.println("The Tri expression is " + triExpression);
-            System.out.println("The Show expression is " + triExShow);
-
-
-            String solved = Calculator.evaluateTri(triExpression);
-            System.out.println("The solved expression is " + solved);
+            String solved = Calculator.evaluateTri(triExpression, degree);
 
             // Covert -1S to Sin-1, -1C to Cos-1, -1T to Tan-1
             String solvedShow = solved;
@@ -170,7 +161,6 @@ public class CalculatorScene {
                 text = ((Button) actionEvent.getSource()).getText();
                 break;
         }
-        System.out.println("The text is " + text);
 
         triExpression += text;
         triExpression += "(";
@@ -202,7 +192,6 @@ public class CalculatorScene {
                     welcomeText.setText(expression);
                 }
                 else {
-                    System.out.println("The index is " + index);
                     welcomeText.setText(expression);
                 }
             }
@@ -229,10 +218,13 @@ public class CalculatorScene {
                 welcomeText.setText(expression);
             }
             else {
-                System.out.println("The index is " + index);
                 welcomeText.setText(expression);
                 return;
             }
         }
+    }
+
+    public void onDRButtonClick(ActionEvent actionEvent) {
+        degree = !degree;
     }
 }
