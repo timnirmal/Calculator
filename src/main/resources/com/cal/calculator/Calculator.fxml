@@ -6,7 +6,7 @@
 
 <AnchorPane prefHeight="452.0" prefWidth="553.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cal.calculator.CalculatorScene">
    <children>
-       <Label fx:id="welcomeText" layoutX="121.0" layoutY="67.0" prefHeight="52.0" prefWidth="254.0" text="0" />
+       <Label fx:id="welcomeText" layoutX="93.0" layoutY="31.0" prefHeight="52.0" prefWidth="370.0" text="0" />
       <Button layoutX="35.0" layoutY="187.0" onAction="#onButtonClick" prefHeight="40.0" prefWidth="40.0" text="0" />
       <Button layoutX="87.0" layoutY="187.0" onAction="#onButtonClick" prefHeight="40.0" prefWidth="40.0" text="1" />
       <Button layoutX="142.0" layoutY="187.0" onAction="#onButtonClick" prefHeight="40.0" prefWidth="40.0" text="2" />
@@ -23,17 +23,18 @@
       <Button layoutX="255.0" layoutY="302.0" onAction="#onButtonClick" prefHeight="40.0" prefWidth="40.0" text="*" />
       <Button layoutX="255.0" layoutY="360.0" onAction="#onButtonClick" prefHeight="40.0" prefWidth="40.0" text="\%" />
       <Button layoutX="35.0" layoutY="245.0" onAction="#onButtonClick" prefHeight="40.0" prefWidth="40.0" text="(" />
-      <Button layoutX="34.0" layoutY="302.0" onAction="#onButtonClick" prefHeight="40.0" prefWidth="40.0" text=")" />
+      <Button layoutX="34.0" layoutY="302.0" onAction="#onCloseBracketButtonClick" prefHeight="40.0" prefWidth="40.0" text=")" />
       <Button layoutX="86.0" layoutY="360.0" onAction="#onButtonClick" prefHeight="40.0" prefWidth="40.0" text="." />
 
       <Button layoutX="310.0" layoutY="244.0" onAction="#onEvalButtonClick" prefHeight="40.0" prefWidth="40.0" text="=" />
 
-      <Button layoutX="310.0" layoutY="302.0" onAction="#onButtonClick" prefHeight="40.0" prefWidth="40.0" text="Sin" />
-      <Button layoutX="369.0" layoutY="187.0" onAction="#onButtonClick" prefHeight="40.0" prefWidth="40.0" text="Cos" />
-      <Button layoutX="368.0" layoutY="244.0" onAction="#onButtonClick" prefHeight="40.0" prefWidth="40.0" text="Tan" />
-      <Button layoutX="368.0" layoutY="302.0" onAction="#onButtonClick" prefHeight="40.0" prefWidth="40.0" text="Sin-1" />
-      <Button layoutX="431.0" layoutY="187.0" onAction="#onButtonClick" prefHeight="40.0" prefWidth="40.0" text="Cos-1" />
-      <Button layoutX="430.0" layoutY="244.0" onAction="#onButtonClick" prefHeight="40.0" prefWidth="40.0" text="Tan-1" />
+      <Label fx:id="Trigonometric" layoutX="93.0" layoutY="105.0" prefHeight="52.0" prefWidth="369.0" text="0" />
+      <Button layoutX="310.0" layoutY="302.0" onAction="#onTriButtonClick" prefHeight="40.0" prefWidth="40.0" text="Sin" />
+      <Button layoutX="369.0" layoutY="187.0" onAction="#onTriButtonClick" prefHeight="40.0" prefWidth="40.0" text="Cos" />
+      <Button layoutX="368.0" layoutY="244.0" onAction="#onTriButtonClick" prefHeight="40.0" prefWidth="40.0" text="Tan" />
+      <Button layoutX="368.0" layoutY="302.0" onAction="#onTriInvButtonClick" prefHeight="40.0" prefWidth="40.0" text="Sin-1" />
+      <Button layoutX="431.0" layoutY="187.0" onAction="#onTriInvButtonClick" prefHeight="40.0" prefWidth="40.0" text="Cos-1" />
+      <Button layoutX="430.0" layoutY="244.0" onAction="#onTriInvButtonClick" prefHeight="40.0" prefWidth="40.0" text="Tan-1" />
 
       <Button layoutX="430.0" layoutY="302.0" onAction="#onButtonClick" prefHeight="40.0" prefWidth="40.0" text="D/R" />
       <Button layoutX="34.0" layoutY="360.0" onAction="#onClearButtonClick" prefHeight="40.0" prefWidth="40.0" text="C" />

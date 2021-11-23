@@ -108,6 +108,74 @@ public class Calculator extends Application {
         return 0;
     }
 
+    public static String evaluateTri(String triExpression) {
+        System.out.println("Evaluating " + triExpression);
+
+        // Find first ( from the end of the string
+        int firstOpenBracket = triExpression.lastIndexOf('(');
+
+        // if char before that index is a
+        if (firstOpenBracket > 0 && triExpression.charAt(firstOpenBracket - 1) == 'a') {
+
+        }
+
+        // if string before that index is Sin
+        if (firstOpenBracket > 0) {
+            String substring = triExpression.substring(firstOpenBracket + 1, triExpression.length());
+
+            System.out.println("Substring Num= " + evaluate(substring));
+            float ans = 0;
+            double pi = Math.PI;
+
+            System.out.println("Substring Op= " + triExpression.substring(firstOpenBracket - 3, firstOpenBracket));
+
+            switch (triExpression.substring(firstOpenBracket - 3, firstOpenBracket)) {
+                case "Sin":
+                    ans = (float) Math.sin(evaluate(substring) * pi / 180);
+                    break;
+                case "Cos":
+                    //ans = (float) Math.cos(evaluate(substring) ); // if you want to use radians
+                    ans = (float) Math.cos(evaluate(substring) * pi / 180); // if you want to use degrees
+                    break;
+                case "Tan":
+                    ans = (float) Math.tan(evaluate(substring) * pi / 180);
+                    break;
+                case "-1S":
+                    ans = (float) Math.asin(evaluate(substring));
+                    break;
+                case "-1C":
+                    ans = (float) Math.acos(evaluate(substring));
+                    break;
+                case "-1T":
+                    System.out.println("tan -1 ");
+                    ans = (float) Math.atan(evaluate(substring));
+                    break;
+            }
+
+            System.out.println("ans = " + ans);
+
+            // Remove sin , cos, tan, -1S, -1C, -1T from the string
+            triExpression = triExpression.substring(0, firstOpenBracket - 3) + ans;
+
+            System.out.println("triExpression = " + triExpression);
+
+            /*
+            while (triExpression.contains("Sin") || triExpression.contains("Cos") || triExpression.contains("Tan") || triExpression.contains("-1S") || triExpression.contains("-1C") || triExpression.contains("-1T")) {
+                return evaluateTri(triExpression);
+            }
+            */
+
+
+            //return String.valueOf(ans);
+            return triExpression;
+        }
+
+
+
+
+        return String.valueOf(evaluate(triExpression));
+    }
+
 
     @Override
     public void start(Stage stage) throws IOException {
