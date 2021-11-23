@@ -101,7 +101,7 @@ public class CalculatorScene {
     }
 
     // Solve the expression except Trigonometric
-    public void onEvalButtonClick(ActionEvent actionEvent) {
+    public void onEvalButtonClick() {
         // remove "|" if contains
         if (expression.contains("|")) expression = expression.replace("|", "");
 
@@ -111,7 +111,7 @@ public class CalculatorScene {
     }
 
     // Clear the expression
-    public void onClearButtonClick(ActionEvent actionEvent) {
+    public void onClearButtonClick() {
         expression = "";
         MainExpression.setText("");
         triExpression = "";
@@ -120,7 +120,7 @@ public class CalculatorScene {
     }
 
     // Clear One character
-    public void onAClearButtonClick(ActionEvent actionEvent) {
+    public void onAClearButtonClick() {
         // Clear last character
         if (expression.length() > 0) {
             expression = expression.substring(0, expression.length() - 1);
@@ -146,21 +146,12 @@ public class CalculatorScene {
         // remove "|" if contains
         if (expression.contains("|")) expression = expression.replace("|", "");
 
-        String text;
-        switch (((Button) actionEvent.getSource()).getText()) {
-            case "Sin-1":
-                text = "-1S";
-                break;
-            case "Cos-1":
-                text = "-1C";
-                break;
-            case "Tan-1":
-                text = "-1T";
-                break;
-            default:
-                text = ((Button) actionEvent.getSource()).getText();
-                break;
-        }
+        String text = switch (((Button) actionEvent.getSource()).getText()) {
+            case "Sin-1" -> "-1S";
+            case "Cos-1" -> "-1C";
+            case "Tan-1" -> "-1T";
+            default -> ((Button) actionEvent.getSource()).getText();
+        };
 
         triExpression += text;
         triExpression += "(";
@@ -170,14 +161,13 @@ public class CalculatorScene {
     }
 
     // Move cursor to the left
-    public void onLeftButtonClick(ActionEvent actionEvent) {
+    public void onLeftButtonClick() {
         // if head is true
         //if (head) {
             // if expression doesnt have "|"
             if (!expression.contains("|")) {
                 // Add "|" to before last character of expression
                 expression = expression.substring(0, expression.length() - 1) + "|" + expression.substring(expression.length()-1);
-                MainExpression.setText(expression);
             }
             else {
                 // get the index of "|"
@@ -189,16 +179,13 @@ public class CalculatorScene {
                 if (index != 1) {
                     // move "|" to number before current position
                     expression = expression.substring(0, index - 1) + "|" + expression.substring(index - 1);
-                    MainExpression.setText(expression);
-                }
-                else {
-                    MainExpression.setText(expression);
                 }
             }
+        MainExpression.setText(expression);
     }
 
     // Move cursor to the right
-    public void onRightButtonClick(ActionEvent actionEvent) {
+    public void onRightButtonClick() {
         // if expression doesnt have "|"
         if (!expression.contains("|")) {
             // Add "|" to before last character of expression

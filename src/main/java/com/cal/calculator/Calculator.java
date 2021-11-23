@@ -8,7 +8,6 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Objects;
 import java.util.Stack;
 
 public class Calculator extends Application {
@@ -101,7 +100,7 @@ public class Calculator extends Application {
 
         // if string before that index is Sin
         if (firstOpenBracket > 0) {
-            String substring = triExpression.substring(firstOpenBracket + 1, triExpression.length());
+            String substring = triExpression.substring(firstOpenBracket + 1);
 
             float ans = 0;
             double pi = Math.PI;
@@ -109,29 +108,21 @@ public class Calculator extends Application {
             String substringToDegree = degree ? substring : String.valueOf(Math.toDegrees(Double.parseDouble(substring)) * 180 / pi);
 
             switch (triExpression.substring(firstOpenBracket - 3, firstOpenBracket)) {
-                case "Sin":
-                    ans = degree ? (float) Math.sin(evaluate(substring) * pi / 180) : (float) Math.sin(evaluate(substring));
-                    break;
-                case "Cos":
-                    ans = degree ? (float) Math.cos(evaluate(substring) * pi / 180) : (float) Math.cos(evaluate(substring));
-                    //ans = (float) Math.cos(evaluate(substring) ); // if you want to use radians
-                    //ans = (float) Math.cos(evaluate(substring) * pi / 180); // if you want to use degrees
-                    break;
-                case "Tan":
-                    ans = degree ? (float) Math.tan(evaluate(substring) * pi / 180) : (float) Math.tan(evaluate(substring));
-                    break;
-                case "-1S":
+                case "Sin" -> ans = degree ? (float) Math.sin(evaluate(substring) * pi / 180) : (float) Math.sin(evaluate(substring));
+                case "Cos" -> ans = degree ? (float) Math.cos(evaluate(substring) * pi / 180) : (float) Math.cos(evaluate(substring));
+                case "Tan" -> ans = degree ? (float) Math.tan(evaluate(substring) * pi / 180) : (float) Math.tan(evaluate(substring));
+                case "-1S" -> {
                     ans = (float) Math.asin(evaluate(substringToDegree)); // output in radians
                     if (degree) ans = (float) (ans * 180 / pi); // output in degrees
-                    break;
-                case "-1C":
+                }
+                case "-1C" -> {
                     ans = (float) Math.acos(evaluate(substringToDegree));
                     if (degree) ans = (float) (ans * 180 / pi);
-                    break;
-                case "-1T":
+                }
+                case "-1T" -> {
                     ans = (float) Math.atan(evaluate(substringToDegree));
                     if (degree) ans = (float) (ans * 180 / pi);
-                    break;
+                }
             }
 
             // Remove sin , cos, tan, -1S, -1C, -1T from the string
