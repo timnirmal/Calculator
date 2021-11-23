@@ -30,19 +30,22 @@ public class Calculator extends Application {
                 continue;
 
             // If Current token is a number, push it to stack for numbers
-            if (tokens[i] >= '0' && tokens[i] <= '9') {
+            if (tokens[i] >= '0' && tokens[i] <= '9'|| tokens[i]=='.') {
                 StringBuffer sbuf = new StringBuffer();
 
                 // There may be more than one digit in number
-                while (i < tokens.length && tokens[i] >= '0' && tokens[i] <= '9')
+                while (i < tokens.length && ('0' <= tokens[i] && tokens[i] <= '9' || tokens[i]=='.'))
                     sbuf.append(tokens[i++]);
+                System.out.println("sbuf = " + sbuf);
                 values.push(Float.parseFloat(sbuf.toString()));
 
+                System.out.println("Pushed " + sbuf.toString() + " to values stack");
                 // right now the i points to the character next to the digit,
                 // since the for loop also increases the i, we would skip one
                 // token position; we need to decrease the value of i by 1 to  correct the offset.
                 i--;
             }
+
 
             // Current token is an opening brace, push it to 'ops'
             else if (tokens[i] == '(')
@@ -65,6 +68,7 @@ public class Calculator extends Application {
                 // Push current token to 'ops'.
                 ops.push(tokens[i]);
             }
+            System.out.println(values + "\n");
         }
 
         // Entire expression has been parsed at this point, apply remaining ops to remaining values
@@ -98,6 +102,8 @@ public class Calculator extends Application {
                 if (b == 0)
                     throw new UnsupportedOperationException("Cannot divide by zero");
                 return a / b;
+            case '%':
+                return a % b;
         }
         return 0;
     }

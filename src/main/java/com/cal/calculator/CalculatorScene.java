@@ -27,4 +27,9 @@ public class CalculatorScene {
     public void onEvalButtonClick(ActionEvent actionEvent) {
         welcomeText.setText(expression + " = " + Calculator.evaluate(expression));
     }
+
+    public void onClearButtonClick(ActionEvent actionEvent) {
+        expression = "";
+        welcomeText.setText("");
+    }
 }
