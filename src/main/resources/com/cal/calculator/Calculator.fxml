@@ -9,12 +9,9 @@
 
 <AnchorPane prefHeight="452.0" prefWidth="633.0" stylesheets="@styles/root.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cal.calculator.CalculatorScene">
    <children>
-       <Label fx:id="welcomeText" layoutX="65.0" layoutY="103.0" prefHeight="52.0" prefWidth="502.0" stylesheets="@styles/labels.css" />
+       <Label fx:id="welcomeText" layoutX="65.0" layoutY="103.0" prefHeight="52.0" prefWidth="502.0" stylesheets="@styles/labels.css" text="0" />
 
-      <Label fx:id="Trigonometric" layoutX="65.0" layoutY="173.0" minHeight="29.0" prefHeight="30.0" prefWidth="501.0" style="-fx-font-size: 15; -fx-text-fill: 6eddff; -fx-background-color: white;" textOverrun="CLIP">
-         <padding>
-            <Insets left="5.0" right="5.0" />
-         </padding>
+      <Label fx:id="Trigonometric" layoutX="65.0" layoutY="173.0" minHeight="29.0" prefHeight="30.0" prefWidth="501.0" style="-fx-font-size: 15; -fx-text-fill: black; -fx-background-color: white;" text="0" textOverrun="CLIP">
          <font>
             <Font size="13.0" />
          </font></Label>
@@ -318,6 +315,11 @@
             </VBox>
          </children>
       </AnchorPane>
+      <Label layoutX="252.0" layoutY="41.0" prefHeight="36.0" prefWidth="129.0" style="-fx-font-size: 25; -fx-background-color: #212B38; -fx-text-fill: #5AFFE7;" text="Calculator">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
 
    </children>
 </AnchorPane>

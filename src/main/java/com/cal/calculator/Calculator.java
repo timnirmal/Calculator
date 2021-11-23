@@ -3,9 +3,12 @@ package com.cal.calculator;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Stack;
 
 public class Calculator extends Application {
@@ -152,6 +155,10 @@ public class Calculator extends Application {
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Calculator");
         stage.setScene(scene);
+        // Get absolute path of the current directory
+        String filePath = new File("").getAbsolutePath();
+        // Set the icon of the calculator
+        stage.getIcons().add(new Image("file:\\"+filePath+"\\src\\main\\java\\com\\cal\\calculator\\icons8-calculator-64.jpg"));
         stage.show();
     }
 
