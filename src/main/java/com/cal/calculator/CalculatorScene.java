@@ -12,36 +12,61 @@ public class CalculatorScene {
     private String triExpression = "";
     private String triExShow = "";
 
-
     @FXML
     public Label welcomeText;
 
     @FXML
     public Label Trigonometric;
 
-    @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
+    // Write new Char to the right of cursor
+    private void WriteLeft(String text) {
+        if (expression.contains("|")) {
+            System.out.println("Contains |");
+            // find index of "|"
+            int index = expression.indexOf("|");
+            // get the expression before "|"
+            String left = expression.substring(0, index);
+            // get the expression after "|"
+            String right = expression.substring(index + 1);
+
+            expression = left + "|" + text + right;
+
+            System.out.println("The expression is " + expression);
+        }
+        else {
+            expression += text;
+        }
+
+        welcomeText.setText(expression);
     }
 
+    // Numbers and Operators
     public void onButtonClick(ActionEvent actionEvent) {
         String text = ((Button) actionEvent.getSource()).getText();
         if (head) {
-            expression += text;
-            welcomeText.setText(expression);
+            // if expression contains "|"
+            WriteLeft(text);
+
         }
         else {
+            // remove "|" if contains
+            if (expression.contains("|")) expression = expression.replace("|", "");
+
             triExpression += text;
             triExShow += text;
             Trigonometric.setText(triExShow);
         }
     }
 
+    // Closing Brackets
     public void onCloseBracketButtonClick(ActionEvent actionEvent) {
         if (head) {
             String text = ((Button) actionEvent.getSource()).getText();
-            expression += text;
             welcomeText.setText(expression);
+
+            // if expression contains "|"
+            WriteLeft(text);
+
         }
         else {
             // Print solved, triExpression, and triExShow
@@ -74,20 +99,27 @@ public class CalculatorScene {
             }
             else {
                 Trigonometric.setText(solved);
-                // TODO : Add the result to expression | Clear triExpression
                 triExpression = "";
+                triExShow = "";
                 expression += solved;
                 welcomeText.setText(expression);
-                //Trigonometric.setText("");
+                Trigonometric.setText("");
                 head = true;
             }
         }
     }
 
+    // Solve the expression except Trigonometric
     public void onEvalButtonClick(ActionEvent actionEvent) {
-        welcomeText.setText(expression + " = " + Calculator.evaluate(expression));
+        // remove "|" if contains
+        if (expression.contains("|")) expression = expression.replace("|", "");
+
+        String answer = String.valueOf(Calculator.evaluate(expression));
+        welcomeText.setText(answer);
+        expression = answer;
     }
 
+    // Clear the expression
     public void onClearButtonClick(ActionEvent actionEvent) {
         expression = "";
         welcomeText.setText("");
@@ -96,7 +128,20 @@ public class CalculatorScene {
         Trigonometric.setText("");
     }
 
+    // Clear One character
+    public void onAClearButtonClick(ActionEvent actionEvent) {
+        // Clear last character
+        if (expression.length() > 0) {
+            expression = expression.substring(0, expression.length() - 1);
+            welcomeText.setText(expression);
+        }
+    }
+
+    // Trigonometric functions Solve
     public void onTriButtonClick(ActionEvent actionEvent) {
+        // remove "|" if contains
+        if (expression.contains("|")) expression = expression.replace("|", "");
+
         String text = ((Button) actionEvent.getSource()).getText();
         triExpression += text;
         triExpression += "(";
@@ -105,8 +150,11 @@ public class CalculatorScene {
         head = false;
     }
 
-
+    // Inverse Trigonometric functions Solve
     public void onTriInvButtonClick(ActionEvent actionEvent) {
+        // remove "|" if contains
+        if (expression.contains("|")) expression = expression.replace("|", "");
+
         String text;
         switch (((Button) actionEvent.getSource()).getText()) {
             case "Sin-1":
@@ -131,14 +179,7 @@ public class CalculatorScene {
         head = false;
     }
 
-    public void onAClearButtonClick(ActionEvent actionEvent) {
-        // Clear last character
-        if (expression.length() > 0) {
-            expression = expression.substring(0, expression.length() - 1);
-            welcomeText.setText(expression);
-        }
-    }
-
+    // Move cursor to the left
     public void onLeftButtonClick(ActionEvent actionEvent) {
         // if head is true
         //if (head) {
@@ -154,18 +195,44 @@ public class CalculatorScene {
                 // remove the "|"
                 expression = expression.substring(0, index) + expression.substring(index + 1);
 
-                // move "|" to number before current position
-                expression = expression.substring(0, index - 1) + "|" + expression.substring(index-1);
-                welcomeText.setText(expression);
+                // if index is not 0
+                if (index != 1) {
+                    // move "|" to number before current position
+                    expression = expression.substring(0, index - 1) + "|" + expression.substring(index - 1);
+                    welcomeText.setText(expression);
+                }
+                else {
+                    System.out.println("The index is " + index);
+                    welcomeText.setText(expression);
+                }
             }
-        //}
-        // Move index of expression to left
-        //if (expression.length() > 0) {
-          //  welcomeText.setText(expression.substring(0, expression.length() - 1));
-        //}
     }
 
+    // Move cursor to the right
     public void onRightButtonClick(ActionEvent actionEvent) {
+        // if expression doesnt have "|"
+        if (!expression.contains("|")) {
+            // Add "|" to before last character of expression
+            expression = expression.charAt(0) + "|" + expression.substring(1);
+            welcomeText.setText(expression);
+        }
+        else {
+            // get the index of "|"
+            int index = expression.indexOf("|");
+            // remove the "|"
+            expression = expression.substring(0, index) + expression.substring(index + 1);
 
+            // if index is not last character
+            if (index != expression.length() - 1) {
+                // move "|" to number after current position
+                expression = expression.substring(0, index + 1) + "|" + expression.substring(index + 1);
+                welcomeText.setText(expression);
+            }
+            else {
+                System.out.println("The index is " + index);
+                welcomeText.setText(expression);
+                return;
+            }
+        }
     }
 }
