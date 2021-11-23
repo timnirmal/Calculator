@@ -27,6 +27,7 @@
       <Button layoutX="86.0" layoutY="360.0" onAction="#onButtonClick" prefHeight="40.0" prefWidth="40.0" text="." />
 
       <Button layoutX="310.0" layoutY="244.0" onAction="#onEvalButtonClick" prefHeight="40.0" prefWidth="40.0" text="=" />
+      <Button layoutX="142.0" layoutY="360.0" onAction="#onAClearButtonClick" prefHeight="40.0" prefWidth="40.0" text="A" />
 
       <Label fx:id="Trigonometric" layoutX="93.0" layoutY="105.0" prefHeight="52.0" prefWidth="369.0" text="0" />
       <Button layoutX="310.0" layoutY="302.0" onAction="#onTriButtonClick" prefHeight="40.0" prefWidth="40.0" text="Sin" />
@@ -38,6 +39,8 @@
 
       <Button layoutX="430.0" layoutY="302.0" onAction="#onButtonClick" prefHeight="40.0" prefWidth="40.0" text="D/R" />
       <Button layoutX="34.0" layoutY="360.0" onAction="#onClearButtonClick" prefHeight="40.0" prefWidth="40.0" text="C" />
+      <Button layoutX="369.0" layoutY="360.0" onAction="#onLeftButtonClick" prefHeight="40.0" prefWidth="40.0" text="&lt;-" />
+      <Button layoutX="431.0" layoutY="360.0" onAction="#onRightButtonClick" prefHeight="40.0" prefWidth="40.0" text="-&gt;" />
 
    </children>
 </AnchorPane>

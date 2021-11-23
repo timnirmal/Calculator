@@ -59,7 +59,7 @@ public class Calculator extends Application {
             }
 
             // Current token is an operator.
-            else if (tokens[i] == '+' || tokens[i] == '-' || tokens[i] == '*' || tokens[i] == '/') {
+            else if (tokens[i] == '+' || tokens[i] == '-' || tokens[i] == '*' || tokens[i] == '/' || tokens[i] == '%') {
                 // While top of 'ops' has same or greater precedence to current
                 // token, which is an operator. Apply operator on top of 'ops' to top two elements in values stack
                 while (!ops.empty() && hasPrecedence(tokens[i], ops.peek()))
@@ -103,6 +103,7 @@ public class Calculator extends Application {
                     throw new UnsupportedOperationException("Cannot divide by zero");
                 return a / b;
             case '%':
+                System.out.println("a%b  = " + a % b);
                 return a % b;
         }
         return 0;

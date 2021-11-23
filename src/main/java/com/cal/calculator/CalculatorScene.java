@@ -69,10 +69,11 @@ public class CalculatorScene {
 
             if (triExpression.contains("Sin") || triExpression.contains("Cos") || triExpression.contains("Tan") || triExpression.contains("-1S") || triExpression.contains("-1C") || triExpression.contains("-1T")) {
                 Trigonometric.setText(solvedShow);
+                welcomeText.setText(solvedShow);
                 head = false;
             }
             else {
-                Trigonometric.setText(triExShow + ") = " + solved);
+                Trigonometric.setText(solved);
                 // TODO : Add the result to expression | Clear triExpression
                 triExpression = "";
                 expression += solved;
@@ -128,5 +129,43 @@ public class CalculatorScene {
         triExShow += ((Button) actionEvent.getSource()).getText()+"(";
         Trigonometric.setText(triExShow);
         head = false;
+    }
+
+    public void onAClearButtonClick(ActionEvent actionEvent) {
+        // Clear last character
+        if (expression.length() > 0) {
+            expression = expression.substring(0, expression.length() - 1);
+            welcomeText.setText(expression);
+        }
+    }
+
+    public void onLeftButtonClick(ActionEvent actionEvent) {
+        // if head is true
+        //if (head) {
+            // if expression doesnt have "|"
+            if (!expression.contains("|")) {
+                // Add "|" to before last character of expression
+                expression = expression.substring(0, expression.length() - 1) + "|" + expression.substring(expression.length()-1);
+                welcomeText.setText(expression);
+            }
+            else {
+                // get the index of "|"
+                int index = expression.indexOf("|");
+                // remove the "|"
+                expression = expression.substring(0, index) + expression.substring(index + 1);
+
+                // move "|" to number before current position
+                expression = expression.substring(0, index - 1) + "|" + expression.substring(index-1);
+                welcomeText.setText(expression);
+            }
+        //}
+        // Move index of expression to left
+        //if (expression.length() > 0) {
+          //  welcomeText.setText(expression.substring(0, expression.length() - 1));
+        //}
+    }
+
+    public void onRightButtonClick(ActionEvent actionEvent) {
+
     }
 }
